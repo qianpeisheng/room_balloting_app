@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+   has_many :microposts, dependent: :destroy
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -35,6 +36,12 @@ class User < ActiveRecord::Base
     # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+    # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Micropost.where("user_id = ?", id)
   end
   
 end

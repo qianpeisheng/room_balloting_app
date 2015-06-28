@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  block: 1
+  name: 1
+  gender: MyString
+  sd: MyString
+  vacancy: 1
+
+two:
+  block: 1
+  name: 1
+  gender: MyString
+  sd: MyString
+  vacancy: 1

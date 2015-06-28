@@ -1,0 +1,16 @@
+<% provide(:title, 'All Rooms') %>
+<h1>All rooms</h1>
+
+<ul class="rooms">
+  <% @rooms.each do |room| %>
+    <li>
+        <%= room.block.to_s << '-' << room.name.to_s %> <%= " "<< room.sd.to_s<< " " << room.gender%> <div class = "specialEffects" id="choose" onclick="myFunction()">Choose</div>
+<script>
+function myFunction() {
+    if(!alert('Alert For your User!')){window.location.reload();}
+}
+</script>
+        
+    </li>
+  <% end %>
+</ul>

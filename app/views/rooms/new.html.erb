@@ -1,0 +1,19 @@
+<%= form_for(@room) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :block %>
+    <%= f.text_field :block %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :gender %>
+    <%= f.text_field :gender %>
+    
+    <%= f.label :sd %>
+    <%= f.text_field :sd %>
+    
+    <%= f.label :vacancy %>
+    <%= f.text_field :vacancy %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

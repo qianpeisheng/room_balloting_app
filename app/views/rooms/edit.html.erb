@@ -1,5 +1,5 @@
 <% 
-    if @room.update_attribute(:resident, current_user.name)
+    if @room.resident.nil? && @room.update_attribute(:resident, current_user.name)
       flash[:success] = "Successful!"
     else
     end

@@ -12,14 +12,7 @@
             room.resident
           end
         %>
-        <div class = "specialEffects" id="choose" onclick="myFunction()">Choose</div>
         <li><%= link_to "Choose", edit_room_path(room) %></li>
-<script>
-function myFunction() {
-    
-    window.location.replace("/room");
-}
-</script>
         
     </li>
   <% end %>

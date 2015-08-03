@@ -5,6 +5,14 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
+        <p>
+        </p>
+        <% if Room.find_by_resident(@user.name)%>
+        <%= "Your room is " + (Room.find_by_resident(@user.name)).block.to_s + "-" + (Room.find_by_resident(@user.name)).name.to_s + "." %>
+                <% else %>
+          <p>Please choose your room.</p>
+        <% end %>
+
       </h1>
     </section>
   </aside>

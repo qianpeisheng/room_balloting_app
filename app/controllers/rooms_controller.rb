@@ -26,24 +26,40 @@ class RoomsController < ApplicationController
   end
     
   def index
-    @rooms = Room.all
+    @rooms = Room.all.sort_by{|room| [room.block, room.name]}
   end
   
   def choose
-      flash[:success] = "Welcome to the Sample App!"
+      @room = Room.find(params[:id])
+      @room.update_attribute(:resident, current_user.name)
+      flash[:success] = "Successful!"
+      redirect_to root
   end
   
   def update
       @room = Room.find(params[:id])
-      @room.update_attribute( :resident, @user.name)
-      flash[:success] = "Resident updated"
-      redirect_to @room
+      if @room.update_attributes(room_params)
+        flash[:success] = "Room updated"
+        redirect_to @room
+      else
+          render 'edit'
+      end
   end
+  
+  def destroy
+    if correct_room != nil  
+    correct_room.destroy
+    flash[:success] = "Room deleted"
+    redirect_to "rooms"
+else
+end 
+  end
+  
   
   private
 
     def room_params
-      params.require(:room).permit(:block, :name, :gender, :sd, :vacancy)
+      params.require(:room).permit(:block, :name, :gender, :sd, :vacancy, :resident)
     end
           # Confirms the correct room.
     def correct_room

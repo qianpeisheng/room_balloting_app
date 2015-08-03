@@ -1,6 +1,33 @@
-<% 
-    if @room.resident.nil? && @room.update_attribute(:resident, current_user.name)
-      flash[:success] = "Successful!"
-    else
-    end
-      %>
+<% provide(:title, @room.block + @room.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @room.block.to_s + "-" + @room.name.to_s %>
+      </h1>
+    </section>
+  </aside>
+</div>
+<%= form_for(@room) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :block %>
+    <%= f.text_field :block,  :disabled => !current_user.admin? %>
+    
+    <%= f.label :name %>
+    <%= f.text_field :name,  :disabled => !current_user.admin? %>
+
+    <%= f.label :gender %>
+    <%= f.text_field :gender,  :disabled => !current_user.admin? %>
+    
+    <%= f.label :sd, "Single or Double"%>
+    <%= f.text_field :sd,  :disabled => !current_user.admin?  %>
+    
+    <%= f.label :vacancy %>
+    <%= f.text_field :vacancy,  :disabled => !current_user.admin? %>
+    
+    <%= f.label :resident %>
+    <%= f.text_field :resident, :value => @current_user.name %>
+  </div>
+  <%= f.submit "Choose this room", class: "btn btn-primary" %>
+<% end %>

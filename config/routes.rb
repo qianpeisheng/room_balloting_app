@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   resources :users
   resources :microposts,          only: [:create, :destroy]
-  resources :rooms,          only: [:create, :edit, :update, :destroy]
+  resources :rooms 
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   # root 'static_pages#home'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  #post 'rooms/:id' => 'rooms#index'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

@@ -9,10 +9,18 @@
           if room.resident.nil?
             " available"
           else
-            room.resident
+           "occupied by " + room.resident
           end
         %>
-        <li><%= link_to "Choose", edit_room_path(room) %></li>
+        <% if !room.resident.nil?%>
+         <% else %>
+            <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        
+      <% if current_user.admin? %>
+     <%= link_to "delete", room, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      <% end %>
         
     </li>
   <% end %>

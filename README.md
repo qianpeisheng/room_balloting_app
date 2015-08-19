@@ -1,6 +1,3 @@
-# Ruby on Rails Tutorial: sample application
+# Room balloting app
 
-This is the sample application for the
-[*Ruby on Rails Tutorial:
-Learn Web Development with Rails*](http://www.railstutorial.org/)
-by [Michael Hartl](http://www.michaelhartl.com/).
+This is an room balloting app. The full readme is uploaded to skylab.

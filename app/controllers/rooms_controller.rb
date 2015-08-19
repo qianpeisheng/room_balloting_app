@@ -26,8 +26,15 @@ class RoomsController < ApplicationController
   end
     
   def index
+      
     @rooms = Room.all.sort_by{|room| [room.block, room.name]}
+    @b2 = Room.where(:block =>2 ).all.sort_by{|room| [room.block, room.name]}
+    @b3 = Room.where(:block =>3 ).all.sort_by{|room| [room.block, room.name]}
+    @b4 = Room.where(:block =>4 ).all.sort_by{|room| [room.block, room.name]}
+    @b5 = Room.where(:block =>5 ).all.sort_by{|room| [room.block, room.name]}
+    @b6 = Room.where(:block =>6 ).all.sort_by{|room| [room.block, room.name]}
   end
+  
   
   def choose
       @room = Room.find(params[:id])
@@ -50,7 +57,7 @@ class RoomsController < ApplicationController
     if correct_room != nil  
     correct_room.destroy
     flash[:success] = "Room deleted"
-    redirect_to "rooms"
+    redirect_to root_path
 else
 end 
   end

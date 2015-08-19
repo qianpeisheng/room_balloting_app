@@ -1,20 +1,64 @@
+<script>
+  $(function() {
+  $('a#show_2').click(function(event){
+    event.preventDefault();
+    $('div#b2').toggle();
+  });
+});
+    $(function() {
+  $('a#show_3').click(function(event){
+    event.preventDefault();
+    $('div#b3').toggle();
+  });
+});
+        $(function() {
+  $('a#show_4').click(function(event){
+    event.preventDefault();
+    $('div#b4').toggle();
+  });
+});
+            $(function() {
+  $('a#show_5').click(function(event){
+    event.preventDefault();
+    $('div#b5').toggle();
+  });
+});
+                $(function() {
+  $('a#show_6').click(function(event){
+    event.preventDefault();
+    $('div#b6').toggle();
+  });
+});
+</script>
 <% provide(:title, 'All Rooms') %>
 <h1>All rooms</h1>
 
 <ul class="rooms">
-  <% @rooms.each do |room| %>
+  <a href="#" id="show_2">Block 2</a><br></br>
+  <div id = "b2">
+  <% @b2.each do |room| %>
     <li>
         <%= room.block.to_s << '-' << room.name.to_s %> <%= " "<< room.sd.to_s<< " " << room.gender%>
         <%=
-          if room.resident.nil?
+          if room.resident.nil? || room.resident == ""
             " available"
           else
            "occupied by " + room.resident
           end
         %>
-        <% if !room.resident.nil?%>
+        <%if room.resident == "" && !Room.find_by_resident(current_user.name)%>
+          <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+          
+          <% else %>
+            
+        <% if !room.resident.nil? || Room.find_by_resident(current_user.name)%>
          <% else %>
             <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        <% if room.resident == current_user.name %>
+          <li><%= button_to "Revoke", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        
         <% end %>
         
       <% if current_user.admin? %>
@@ -24,5 +68,147 @@
         
     </li>
   <% end %>
+  
+  </div>
+    <a href="#" id="show_3">Block 3</a><br></br>
+  <div id = "b3">
+  <% @b3.each do |room| %>
+    <li>
+        <%= room.block.to_s << '-' << room.name.to_s %> <%= " "<< room.sd.to_s<< " " << room.gender%>
+        <%=
+          if room.resident.nil? || room.resident == ""
+            " available"
+          else
+           "occupied by " + room.resident
+          end
+        %>
+        <%if room.resident == "" && !Room.find_by_resident(current_user.name)%>
+          <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+          
+          <% else %>
+            
+        <% if !room.resident.nil? || Room.find_by_resident(current_user.name)%>
+         <% else %>
+            <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        <% if room.resident == current_user.name %>
+          <li><%= button_to "Revoke", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        
+        <% end %>
+        
+      <% if current_user.admin? %>
+     <%= link_to "delete", room, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      <% end %>
+        
+    </li>
+  <% end %>
+  </div>
+    <a href="#" id="show_4">Block 4</a><br></br>
+  <div id = "b4">
+  <% @b4.each do |room| %>
+    <li>
+        <%= room.block.to_s << '-' << room.name.to_s %> <%= " "<< room.sd.to_s<< " " << room.gender%>
+        <%=
+          if room.resident.nil? || room.resident == ""
+            " available"
+          else
+           "occupied by " + room.resident
+          end
+        %>
+        <%if room.resident == "" && !Room.find_by_resident(current_user.name)%>
+          <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+          
+          <% else %>
+            
+        <% if !room.resident.nil? || Room.find_by_resident(current_user.name)%>
+         <% else %>
+            <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        <% if room.resident == current_user.name %>
+          <li><%= button_to "Revoke", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        
+        <% end %>
+        
+      <% if current_user.admin? %>
+     <%= link_to "delete", room, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      <% end %>
+        
+    </li>
+  <% end %>
+  </div>
+    <a href="#" id="show_5">Block 5</a><br></br>
+  <div id = "b5">
+  <% @b5.each do |room| %>
+    <li>
+        <%= room.block.to_s << '-' << room.name.to_s %> <%= " "<< room.sd.to_s<< " " << room.gender%>
+        <%=
+          if room.resident.nil? || room.resident == ""
+            " available"
+          else
+           "occupied by " + room.resident
+          end
+        %>
+        <%if room.resident == "" && !Room.find_by_resident(current_user.name)%>
+          <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+          
+          <% else %>
+            
+        <% if !room.resident.nil? || Room.find_by_resident(current_user.name)%>
+         <% else %>
+            <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        <% if room.resident == current_user.name %>
+          <li><%= button_to "Revoke", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        
+        <% end %>
+        
+      <% if current_user.admin? %>
+     <%= link_to "delete", room, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      <% end %>
+        
+    </li>
+  <% end %>
+  </div>
+    <a href="#" id="show_6">Block 6</a><br></br>
+  <div id = "b6">
+  <% @b6.each do |room| %>
+    <li>
+        <%= room.block.to_s << '-' << room.name.to_s %> <%= " "<< room.sd.to_s<< " " << room.gender%>
+        <%=
+          if room.resident.nil? || room.resident == ""
+            " available"
+          else
+           "occupied by " + room.resident
+          end
+        %>
+        <%if room.resident == "" && !Room.find_by_resident(current_user.name)%>
+          <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+          
+          <% else %>
+            
+        <% if !room.resident.nil? || Room.find_by_resident(current_user.name)%>
+         <% else %>
+            <li><%= button_to "Choose", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        <% if room.resident == current_user.name %>
+          <li><%= button_to "Revoke", edit_room_path(room), :method => :get %></li>
+        <% end %>
+        
+        <% end %>
+        
+      <% if current_user.admin? %>
+     <%= link_to "delete", room, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      <% end %>
+        
+    </li>
+  <% end %>
+  </div>
 </ul>
 

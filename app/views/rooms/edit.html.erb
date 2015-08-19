@@ -1,4 +1,4 @@
-<% provide(:title, @room.block + @room.name) %>
+<% provide(:title, @room_block.to_s + @room.name.to_s) %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -26,8 +26,20 @@
     <%= f.label :vacancy %>
     <%= f.text_field :vacancy,  :disabled => !current_user.admin? %>
     
+    <% if !@room.resident || @room.resident == "" %>
     <%= f.label :resident %>
-    <%= f.text_field :resident, :value => @current_user.name %>
+    
+      <%= f.text_field :resident, :value => @current_user.name %>
+    <% else %>
+      <%= f.label :resident %>
+      <%= f.text_field :resident, :value => nil, :disabled => !current_user.admin?  %>
+    <% end %>
   </div>
-  <%= f.submit "Choose this room", class: "btn btn-primary" %>
+  <% if !@room.resident || @room.resident == "" %>
+    <%= f.submit "Choose this room", class: "btn btn-primary" %>
+  <% else %>
+      <% @room.resident = nil %>
+      <% @room.save %>
+    <%= f.submit "Revoke your choice", class: "btn btn-primary" %>
+  <% end %>
 <% end %>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'signup'  => 'users#new'
   get 'rooms' => 'rooms#index'
   get 'newroom' => 'rooms#new'
+  get 'b2' => 'b2'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
